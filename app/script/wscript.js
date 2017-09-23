@@ -34,6 +34,7 @@ var flag_speech = 0;
                 else
                 {
                     document.getElementById('result_text').innerHTML = "[途中経過] " + results[i][0].transcript;
+                    room.send(results[i][0].transcript);
                     flag_speech = 1;
                 }
             }
@@ -42,4 +43,3 @@ var flag_speech = 0;
         document.getElementById('status').innerHTML = "start";
         recognition.start();
     }
-    

@@ -4,55 +4,88 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>SkyWay JS SDK Tutorial</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="node_module/bootstrap/dist/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/fireworks.css" media="screen">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="node_module/bootstrap/dist/js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="script/debug.js"></script>
     <script type="text/javascript" src="script/soundmanager2-nodebug-jsmin.js"></script>
     <script type="text/javascript" src="script/fireworks.js"></script>
     <script type="text/javascript" src="script/wscript.js"></script>
-</head>
-<div id="fireworks-template">
-    <div id="fw" class="firework"></div>
-    <div id="fp" class="fireworkParticle"><img src="image/particles.gif" alt=""></div>
-</div>
-<div id="fireContainer"></div>
-<div class="pure-g">
+    <script type="text/javascript" src="script/word_command.js"></script>
 
-    <!-- Video area -->
-    <div class="pure-u-2-3" id="video-container">
-        <video id="their-video" autoplay></video>
+
+</head>
+<body>
+    <div id="fireworks-template">
+        <div id="fw" class="firework"></div>
+        <div id="fp" class="fireworkParticle"><img src="image/particles.gif" alt=""></div>
+    </div>
+    <div id="fireContainer"></div>
+    <div class="pure-g">
+    
+      <!-- Video area -->
+      <div class="pure-u-2-3" id="video-container">
+        <div id="their-videos"></div>
         <canvas id="hanabi"></canvas>
         <textarea id="result_text" cols="100" rows="10">
         </textarea>
-        <video id="my-video" muted="true" autoplay></video>
-    </div>
-
-    <!-- Steps -->
-    <div class="pure-u-1-3">
-        <h2>SkyWay Video Chat</h2>
-
-        <p>Your id: <span id="my-id">...</span></p>
-        <p>Share this id with others so they can call you.</p>
-        <h3>Make a call</h3>
-        <form id="make-call" class="pure-form">
-            <input type="text" placeholder="Call user id..." id="callto-id">
-            <button href="#" class="pure-button pure-button-success" type="submit">Call</button>
-        </form>
-        <form id="end-call" class="pure-form">
-            <p>Currently in call with <span id="their-id">...</span></p>
-            <button href="#" class="pure-button pure-button-success" type="submit">End Call</button
-        </form>
-    </div>
+        <div>
+          <label id="my-label"></label>
+          <video id="my-video" muted="true" autoplay playsinline></video>
+        </div>
+      </div>
     
+      <!-- Steps -->
+      <div class="pure-u-1-3">
+        <h2>SkyWay Video Chat</h2>
+    
+        <div class="select">
+          <label for="audioSource">Audio input source: </label><select id="audioSource"></select>
+        </div>
+    
+        <div class="select">
+          <label for="videoSource">Video source: </label><select id="videoSource"></select>
+        </div>
+    
+        <!-- Get local audio/video stream -->
+        <div id="step1">
+          <p>Please click `allow` on the top of the screen so we can access your webcam and microphone for calls.</p>
+          <div id="step1-error">
+            <p>Failed to access the webcam and microphone. Make sure to run this demo on an http server and click allow when asked for permission by the browser.</p>
+            <a href="#" class="pure-button pure-button-error" id="step1-retry">Try again</a>
+          </div>
+        </div>
+    
+        <!-- Make calls to others -->
+        <div id="step2">
+          <h3>Make a call</h3>
+          <form id="make-call" class="pure-form">
+            <input type="text" placeholder="Join room..." id="join-room">
+            <button class="pure-button pure-button-success" type="submit">Join</button>
+          </form>
+          <p><strong>Warning:</strong> You may connect with people you don't know if you both use the same room name.</p>
+          <p><strong>注意：</strong>同じルーム名を使用した場合、知らない人と接続する可能性があります。</p>
+        </div>
+        <p>Your id: <span id="my-id">...</span></p>
+    
+        <!-- Call in progress -->
+        <div id="step3">
+          <p>Currently in room <span id="room-id">...</span></p>
+          <p><a href="#" class="pure-button pure-button-error" id="end-call">End call</a></p>
+        </div>
+      </div>
+    </div>
 
-    <br>
     <textarea id="status" cols="100" rows="1">
     </textarea>
     <br>
+
+
     <input type="button" onClick="vr_function();" value="音認開始">
 
-    <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-    <script type="text/javascript" src="script/key.js"></script>
-    <script type="text/javascript" src="script/script.js"></script>
-</div>
+</body>
+<script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+<script type="text/javascript" src="script/key.js"></script>
+<script type="text/javascript" src="script/script.js"></script>
 </html>
