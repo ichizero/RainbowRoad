@@ -1,49 +1,45 @@
-// 音声認識機能
-var recognition;
-var nowRecognition = false;
+var flag_speech = 0;
 
-// 確定した結果を表示する場所
-var $finalSpan = $('#final_span');
+       function vr_function() {
+           window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+           var recognition = new webkitSpeechRecognition();
+           recognition.lang = 'ja';
+           recognition.interimResults = true;
+           recognition.continuous = true;
 
-// 音声認識中の不確かな情報を表示する場所
-var $interimSpan = $('#interim_span');
+           recognition.onsoundstart = function() {
+               document.getElementById('status').innerHTML = "認識中";
+           };
+           recognition.onnomatch = function() {
+               document.getElementById('status').innerHTML = "もう一度試してください";
+           };
+           recognition.onerror = function() {
+               document.getElementById('status').innerHTML = "エラー";
+               if(flag_speech == 0)
+                 vr_function();
+           };
+           recognition.onsoundend = function() {
+               document.getElementById('status').innerHTML = "停止中";
+                 vr_function();
+           };
 
-// 音声認識開始のメソッド
-function start () {
-    console.log("start recog");
-    recognition = new webkitSpeechRecognition();
-    recognition.lang = $('#select2').value;
-    // 以下2点がポイント！！
-    // 継続的に処理を行い、不確かな情報も取得可能とする.
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    $interimSpan.textContent = "aaaa";
-    // 音声結果を取得するコールバック
-    recognition.onresult = function (e) {
-        console.log(e);
-        var finalText = '';
-        var interimText = '';
-        for (var i = 0; i < e.results.length; i++) {
-            // isFinalがtrueの場合は確定した内容
-            // 仕様書では「final」という変数名だが、Chromeでは「isFinal」のようです.
-            if (e.results[i].isFinal) {
-                finalText += e.results[i][0].transcript;
-            } else {
-                interimText += e.results[i][0].transcript;
+           recognition.onresult = function(event) {
+               var results = event.results;
+               for (var i = event.resultIndex; i < results.length; i++) {
+                   if (results[i].isFinal)
+                   {
+                    document.getElementById('result_text').innerHTML = results[i][0].transcript;
+                    vr_function();
+                }
+                else
+                {
+                    document.getElementById('result_text').innerHTML = "[途中経過] " + results[i][0].transcript;
+                    flag_speech = 1;
+                }
             }
         }
-        console.log(finalText);
-        $interimSpan.textContent = interimText;
-        $finalSpan.textContent = finalText;
-    };
-    recognition.start();
-    nowRecognition = true;
-};
-
-// 音声認識を止めるメソッド
-function stop () {
-    console.log("stop recog");
-    recognition.stop();
-    nowRecognition = false;
-}
-
+        flag_speech = 0;
+        document.getElementById('status').innerHTML = "start";
+        recognition.start();
+    }
+    

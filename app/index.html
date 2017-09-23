@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="style/fireworks.css" media="screen">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-    <script type="text/javascript" src="script/key.js"></script>
-    <script type="text/javascript" src="script/script.js"></script>
     <script type="text/javascript" src="script/debug.js"></script>
     <script type="text/javascript" src="script/soundmanager2-nodebug-jsmin.js"></script>
     <script type="text/javascript" src="script/fireworks.js"></script>
@@ -25,6 +22,8 @@
     <div class="pure-u-2-3" id="video-container">
         <video id="their-video" autoplay></video>
         <canvas id="hanabi"></canvas>
+        <textarea id="result_text" cols="100" rows="10">
+        </textarea>
         <video id="my-video" muted="true" autoplay></video>
     </div>
 
@@ -44,10 +43,16 @@
             <button href="#" class="pure-button pure-button-success" type="submit">End Call</button
         </form>
     </div>
-    <input id="select2" type="button" onclick="start()" value="test">
-    <input type="button" onclick="stop()" value="stop">
-    <div id="final_span"></div>
-    <div id="interim_span"></div>
+    
 
+    <br>
+    <textarea id="status" cols="100" rows="1">
+    </textarea>
+    <br>
+    <input type="button" onClick="vr_function();" value="音認開始">
+
+    <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+    <script type="text/javascript" src="script/key.js"></script>
+    <script type="text/javascript" src="script/script.js"></script>
 </div>
 </html>
