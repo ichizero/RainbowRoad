@@ -254,3 +254,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,osx,windows,intellij,vim,emacs,npm
+
+./app/script/key.js
