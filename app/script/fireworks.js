@@ -20,7 +20,7 @@ var fc;
 function Animator() {
 
   var self = this;
-  writeDebug('Animator()');
+  //writeDebug('Animator()');
   this.tweens = [];
   this.tweens['default'] = [1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1];
   this.tweens.blast = [12,12,11,10,10,9,8,7,6,5,4,3,2,1];
@@ -51,7 +51,7 @@ function Animator() {
     // writeDebug('animator.enqueue()');
     var i;
     if (!fMethod) {
-      writeDebug('animator.enqueue(): missing fMethod');
+      //writeDebug('animator.enqueue(): missing fMethod');
     }
     if (typeof(self.queue.IDs[o.oID])=='undefined') {
       // writeDebug('animator.enqueue(): added '+o.oID);
@@ -110,7 +110,7 @@ function FireworksController() {
 
   var self = this;
   this.intervalRate = 20; // rate (ms) to run animation at, general best default = 20
-  this.DEBUG = true; // debug mode disabled by default
+  this.DEBUG = false; // debug mode disabled by default
   this.oFW = null;
   this.isIE = !!(navigator.userAgent.match(/msie/i));
   this.isOpera = !!(navigator.userAgent.match(/opera/i));
@@ -194,7 +194,7 @@ function Firework(oC,startX,startY,burstX,burstY,burstType,nRadius,nParticles,nC
     p += arguments[i]+',';
   }
   p += arguments[i];
-  writeDebug('firework('+p+')');
+  //writeDebug('firework('+p+')');
   this.oC = oC;
   this.o = fc.oFW.cloneNode(!fc.isIE?true:false);
   this.particles = [];
@@ -263,7 +263,7 @@ function Firework(oC,startX,startY,burstX,burstY,burstType,nRadius,nParticles,nC
   };
 
   this.destructor = function() {
-    writeDebug('firework.destructor()');
+    //writeDebug('firework.destructor()');
     // for (var i=0; i<self.particles.length; i++) {
     for (var i=self.particles.length; i--;) {
       self.particles[i].destructor();
@@ -292,7 +292,7 @@ function Firework(oC,startX,startY,burstX,burstY,burstType,nRadius,nParticles,nC
 
   this.createBurst = function(circles,nMax,rMax,type) {
     // c: # of circles, n: # of particles per circle, r: max radius
-    writeDebug('firework.createBurst('+circles+','+nMax+','+rMax+','+type+')');
+    //writeDebug('firework.createBurst('+circles+','+nMax+','+rMax+','+type+')');
     var i=0, j=0;
     var tmp = 0;
     var radiusInc = rMax/circles;
@@ -498,7 +498,7 @@ function createFirework(nRadius,nParticles,nCircles,nBurstType,startX,startY,bur
       tmp += i+',';
     }
   }
-  writeDebug('createFirework('+tmp+')');
+  //writeDebug('createFirework('+tmp+')');
 
   if (fc.isEmpty(startX)) {
     startX = parseInt(Math.random()*fc.canvasX, 10);

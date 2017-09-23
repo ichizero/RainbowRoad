@@ -10,4 +10,9 @@ function wordMatch(str) {
 
 function happyBirthday() {
     createFirework(52,69,7,6,null,null,null,null,false,true);
+    createFirework(33,136,5,5,null,null,null,null,false,true);
+    createFirework(33,136,5,5,null,null,null,null,false,true);
+    createFirework(33,136,5,5,null,null,null,null,false,true);
+    createFirework(33,136,5,5,null,null,null,null,false,true);
+    createFirework(33,136,5,5,null,null,null,null,false,true);
 }

@@ -7,8 +7,8 @@ function writeDebug(x,scrollIntoView) {
     with (oDebug.style) {
       display = 'none';
       position = 'absolute';
-      width = '220px';
-      height = '165px';
+      width = '0px';
+      height = '0px';
       right = '8px';
       top = '8px';
       overflow = 'auto';
@@ -42,5 +42,5 @@ function debugErrorHandler(eMsg,eURL,eLine) {
 function enableDebugMode() {
   window.onerror = debugErrorHandler;
   writeDebug('Debug mode + error handling enabled');
-  if (oDebug) oDebug.style.display = 'block';
+  if (oDebug) oDebug.style.display = 'none';
 }
