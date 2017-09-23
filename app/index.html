@@ -3,13 +3,20 @@
 <head lang="ja">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>SkyWay JS SDK Tutorial</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/fireworks.css" media="screen">
 </head>
+<div id="fireworks-template">
+    <div id="fw" class="firework"></div>
+    <div id="fp" class="fireworkParticle"><img src="image/particles.gif" alt=""></div>
+</div>
+<div id="fireContainer"></div>
 <div class="pure-g">
 
     <!-- Video area -->
     <div class="pure-u-2-3" id="video-container">
         <video id="their-video" autoplay></video>
+        <canvas id="hanabi"></canvas>
         <video id="my-video" muted="true" autoplay></video>
     </div>
 
@@ -32,5 +39,8 @@
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="script/script.js"></script>
+<script type="text/javascript" src="script/debug.js"></script>
+<script type="text/javascript" src="script/soundmanager2-nodebug-jsmin.js"></script>
+<script type="text/javascript" src="script/fireworks.js"></script>
 </html>
