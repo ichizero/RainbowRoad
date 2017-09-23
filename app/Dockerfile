@@ -25,4 +25,4 @@ ENV SKYWAY_KEY YOUR_API_KEY
 
 COPY ./ /tmp/work
 
-CMD cd /tmp/work && python3 -m http.server 80
+CMD echo "window.__SKYWAY_KEY__ = '${SKYWAY_KEY}';" > /tmp/work/script/key.js && cd /tmp/work && python3 -m http.server 80

@@ -17,7 +17,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
     });
 
 peer = new Peer({
-    key: '3aa55735-2b38-4905-9d7a-5818bf6fe731',
+    key: window.__SKYWAY_KEY__,
     debug: 3
 });
 
